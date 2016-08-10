@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>OperatingSystem list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Osname</th>
+                <th>Createduser</th>
+                <th>Modifieduser</th>
+                <th>Createddate</th>
+                <th>Modifieddate</th>
+                <th>Id</th>
+                <th>Active</th>
+                <th>Deleted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for operatingSystem in operatingSystems %}
+            <tr>
+                <td><a href="{{ path('operatingsystem_show', { 'id': operatingSystem.id }) }}">{{ operatingSystem.osName }}</a></td>
+                <td>{{ operatingSystem.createdUser }}</td>
+                <td>{{ operatingSystem.modifiedUser }}</td>
+                <td>{% if operatingSystem.createdDate %}{{ operatingSystem.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if operatingSystem.modifiedDate %}{{ operatingSystem.modifiedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ operatingSystem.id }}</td>
+                <td>{% if operatingSystem.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if operatingSystem.deleted %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('operatingsystem_show', { 'id': operatingSystem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('operatingsystem_edit', { 'id': operatingSystem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('operatingsystem_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

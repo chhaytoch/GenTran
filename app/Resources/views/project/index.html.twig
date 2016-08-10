@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} GenTran Project List{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Project list</h1>
+
+                {#<a href="{{ path('project_new') }}" class="button success">Create a Project</a>#}
+                <button type="button" data-toggle="modal" data-target="#createProjectModal" class="btn btn-success">Create a Project</button>
+                <div class="row">
+                    {% for project in projects %}
+                    <div class="col-md-3>
+                        <h2><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.projectName }}</a></h2>
+                    <p>{{ project.description }}</p>
+                    <p>{% if project.createdDate %}{{ project.createdDate|date('Y-m-d H:i:s') }}{% endif %}</p>
+                    <div class="button-group">
+                        {#<a href="{{ path('project_show', { 'id': project.id }) }}" class="button warning">show</a>#}
+                        <a href="{{ path('project_delete', { 'id': project.id }) }}" class="button alert">Delete</a>
+                        <a href="{{ path('project_edit', { 'id': project.id }) }}" class="button primary">Edit</a>
+                        <a href="{{ path('stringkey_index') }}" class="button success">Add Key String</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade"  id="createProjectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                    <input type="submit" value="Create" class="button primary float-right"/>
+                    {{ form_end(form) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}

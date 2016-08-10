@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>StringKey</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Keylabel</th>
+                <td>{{ stringKey.keyLabel }}</td>
+            </tr>
+            <tr>
+                <th>Createduser</th>
+                <td>{{ stringKey.createdUser }}</td>
+            </tr>
+            <tr>
+                <th>Modifieduser</th>
+                <td>{{ stringKey.modifiedUser }}</td>
+            </tr>
+            <tr>
+                <th>Createddate</th>
+                <td>{% if stringKey.createdDate %}{{ stringKey.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifieddate</th>
+                <td>{% if stringKey.modifiedDate %}{{ stringKey.modifiedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ stringKey.id }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if stringKey.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Deleted</th>
+                <td>{% if stringKey.deleted %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stringkey_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('stringkey_edit', { 'id': stringKey.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

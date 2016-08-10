@@ -1,0 +1,4 @@
+services:
+    project.services:
+        class: Frontend\ProjectBundle\Form\ProjectType
+        arguments: ["@doctrine.orm.entity_manager"]

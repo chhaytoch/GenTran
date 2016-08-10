@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>StringValue list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Labelvalue</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Createduser</th>
+                <th>Modifieduser</th>
+                <th>Createddate</th>
+                <th>Modifieddate</th>
+                <th>Id</th>
+                <th>Active</th>
+                <th>Deleted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stringValue in stringValues %}
+            <tr>
+                <td><a href="{{ path('stringvalue_show', { 'id': stringValue.id }) }}">{{ stringValue.labelValue }}</a></td>
+                <td>{{ stringValue.type }}</td>
+                <td>{{ stringValue.quantity }}</td>
+                <td>{{ stringValue.createdUser }}</td>
+                <td>{{ stringValue.modifiedUser }}</td>
+                <td>{% if stringValue.createdDate %}{{ stringValue.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if stringValue.modifiedDate %}{{ stringValue.modifiedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ stringValue.id }}</td>
+                <td>{% if stringValue.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if stringValue.deleted %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('stringvalue_show', { 'id': stringValue.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stringvalue_edit', { 'id': stringValue.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stringvalue_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

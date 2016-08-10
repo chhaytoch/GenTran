@@ -1,3 +1,37 @@
-app:
-    resource: "@AppBundle/Controller/"
+home_page:
+    resource: "@HomePageBundle/Controller/"
     type:     annotation
+    prefix:   /
+
+string_value:
+    resource: "@StringValueBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+operating_system:
+    resource: "@OperatingSystemBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+string_key:
+    resource: "@StringKeyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+lang:
+    resource: "@LangBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+project:
+    resource: "@ProjectBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

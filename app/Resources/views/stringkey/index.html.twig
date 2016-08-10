@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>StringKey list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Keylabel</th>
+                <th>Createduser</th>
+                <th>Modifieduser</th>
+                <th>Createddate</th>
+                <th>Modifieddate</th>
+                <th>Id</th>
+                <th>Active</th>
+                <th>Deleted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stringKey in stringKeys %}
+            <tr>
+                <td><a href="{{ path('stringkey_show', { 'id': stringKey.id }) }}">{{ stringKey.keyLabel }}</a></td>
+                <td>{{ stringKey.createdUser }}</td>
+                <td>{{ stringKey.modifiedUser }}</td>
+                <td>{% if stringKey.createdDate %}{{ stringKey.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if stringKey.modifiedDate %}{{ stringKey.modifiedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ stringKey.id }}</td>
+                <td>{% if stringKey.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if stringKey.deleted %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('stringkey_show', { 'id': stringKey.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stringkey_edit', { 'id': stringKey.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stringkey_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
