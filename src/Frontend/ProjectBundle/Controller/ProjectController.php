@@ -31,8 +31,10 @@ class ProjectController extends Controller
         $project = new Project();
         $form = $this->createForm('Frontend\ProjectBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
+        $user = $this->get('security.context')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $project->setCreatedDate(new \DateTime());
             $em->persist($project);

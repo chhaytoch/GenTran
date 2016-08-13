@@ -18,7 +18,8 @@ class Project extends UserLogEntity
     public function __construct()
     {
         $this->lang = new ArrayCollection();
-        $this->os = new ArrayCollection();
+        $this->os   = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     /**
@@ -48,6 +49,31 @@ class Project extends UserLogEntity
      *      )
      */
     private $os;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Frontend\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="project_user",
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user[] = $user;
+    }
 
     /**
      * @return mixed
@@ -94,7 +120,7 @@ class Project extends UserLogEntity
      */
     public function setLang($lang)
     {
-        $this->lang = $lang;
+        $this->lang[] = $lang;
     }
 
     /**
@@ -110,7 +136,7 @@ class Project extends UserLogEntity
      */
     public function setOs($os)
     {
-        $this->os = $os;
+        $this->os[] = $os;
     }
 }
 
