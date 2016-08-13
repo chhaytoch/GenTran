@@ -1,8 +1,19 @@
+@import "core";
 @import "homepage";
+@import "register";
+@import "project";
 
 .center-screen{
   position: absolute;
   top:50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  @include prefix(transform, translate(-50%,-50%), webkit moz ms);
+}
+
+.layout{
+  background-color: #f1f1f1;
+}
+
+.color-white{
+  color:#fff;
 }
