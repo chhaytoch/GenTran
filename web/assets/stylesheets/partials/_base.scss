@@ -2,31 +2,3 @@
 @import "homepage";
 @import "register";
 @import "project";
-
-.m-b-20{
-  margin-bottom: 20px;
-}
-
-.m-t-20{
-  margin-top: 20px;
-}
-
-.display-flex-wrap{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.center-screen{
-  position: absolute;
-  top:50%;
-  left: 50%;
-  @include prefix(transform, translate(-50%,-50%), webkit moz ms);
-}
-
-.layout{
-  background-color: #f1f1f1;
-}
-
-.color-white{
-  color:#fff;
-}

@@ -1,27 +1,30 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="row align-center">
-    <div class="small-6 small-centered">
-        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-        {#{{ form_widget(form) }}#}
-        <label for="fos_user_registration_form_username" class="required">Username</label>
-        {{ form_widget(form.username) }}
-        {{ form_errors(form.username) }}
+<div class="register-layout">
+    <div class="container">
+        <div class="row">
+            <div class="form-section">
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {#{{ form_widget(form) }}#}
+                <label for="fos_user_registration_form_username" class="required">Username</label>
+                {{ form_widget(form.username, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.username) }}
 
-        <label for="fos_user_registration_form_email" class="required">Email</label>
-        {{ form_widget(form.email) }}
-        {{ form_errors(form.email) }}
+                <label for="fos_user_registration_form_email" class="required">Email</label>
+                {{ form_widget(form.email, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.email) }}
 
-        <label for="fos_user_registration_form_plainPassword_first" class="required">Password</label>
-        {{ form_widget(form.plainPassword.first) }}
-        {{ form_errors(form.plainPassword.first) }}
+                <label for="fos_user_registration_form_plainPassword_first" class="required">Password</label>
+                {{ form_widget(form.plainPassword.first, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.plainPassword.first) }}
 
-        <label for="fos_user_registration_form_plainPassword_second" class="required">Password Confirmation</label>
-        {{ form_widget(form.plainPassword.second) }}
-        <div>
-            <input type="submit" class="button primary" value="Register" />
+                <label for="fos_user_registration_form_plainPassword_second" class="required">Password Confirmation</label>
+                {{ form_widget(form.plainPassword.second, {'attr':{'class':'form-control'}}) }}
+                <div>
+                    <input type="submit" class="btn btn-success" value="Register" />
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
-        {{ form_end(form) }}
-
     </div>
 </div>
