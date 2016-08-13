@@ -27,7 +27,7 @@ class Project extends UserLogEntity
     private $projectName;
 
     /**
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", nullable=true, type="text")
      */
     private $description;
 
@@ -94,7 +94,7 @@ class Project extends UserLogEntity
      */
     public function setLang($lang)
     {
-        $this->lang[] = $lang;
+        $this->lang = $lang;
     }
 
     /**

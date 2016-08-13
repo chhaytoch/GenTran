@@ -17,21 +17,29 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('projectName')
-            ->add('description')
+            ->add('projectName', 'text', array(
+                'attr'      => array('class'=>'form-control')
+            ))
+            ->add('description', 'textarea', array(
+                'attr'      => array('class'=>'form-control'),
+                'required'  => false
+            ))
             ->add('lang', 'entity', array(
-                'class'=> 'Frontend\LangBundle\Entity\Lang',
-                'property'=> 'langName',
-                'multiple' => true,
-                'expanded' => false,
-                'label' => 'Language'
+                'class'     => 'Frontend\LangBundle\Entity\Lang',
+                'property'  => 'langName',
+                'multiple'  => true,
+                'expanded'  => false,
+                'label'     => 'Language (Hold Ctrl + Click)',
+                'attr'      => array('class'=>'form-control')
             ))
             ->add('os', 'entity', array(
-                'class'=> 'Frontend\OperatingSystemBundle\Entity\OperatingSystem',
-                'property'=> 'osName',
-                'multiple' => true,
-                'expanded' => false,
-                'label' => 'Operating System'
+                'class'     => 'Frontend\OperatingSystemBundle\Entity\OperatingSystem',
+                'property'  => 'osName',
+                'multiple'  => true,
+                'expanded'  => false,
+                'label'     => 'Operating System (Hold Ctrl + Click)',
+                'label_attr'=> array('class'=>'label-style'),
+                'attr'      => array('class'=>'form-control')
             ))
         ;
     }

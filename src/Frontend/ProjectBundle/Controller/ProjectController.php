@@ -34,13 +34,14 @@ class ProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $project->setCreatedDate(new \DateTime());
             $em->persist($project);
             $em->flush();
 
             return $this->redirectToRoute('project_index');
         }
 
-        $projects = $em->getRepository('ProjectBundle:Project')->findAll();
+        $projects = $em->getRepository('ProjectBundle:Project')->findBy([], array('createdDate'=>'DESC'));
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,

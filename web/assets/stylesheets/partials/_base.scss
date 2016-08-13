@@ -3,6 +3,19 @@
 @import "register";
 @import "project";
 
+.m-b-20{
+  margin-bottom: 20px;
+}
+
+.m-t-20{
+  margin-top: 20px;
+}
+
+.display-flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .center-screen{
   position: absolute;
   top:50%;
