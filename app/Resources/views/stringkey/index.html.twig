@@ -1,7 +1,54 @@
 {% extends 'backend.html.twig' %}
 
 {% block body %}
-    <h1>StringKey list</h1>
+    <div class="container">
+        <h1>String Key Management</h1>
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    Android
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    IOS
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                </div><!-- /input-group -->
+
+                <ul>
+                    <li>ABC</li>
+                    <li>ABC</li>
+                    <li>ABC</li>
+                </ul>
+            </div>
+            <div class="col-md-8 col-sm-8">
+                <form action="" method="post">
+
+                    <label for="username">Username or Email</label>
+                    <input type="text" class="form-control" id="username" name="_username" required="required" autofocus />
+
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="_password" required="required" />
+
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">Remember Me</label>
+
+                    <input type="submit" class="btn btn-default btn-login" id="_submit" name="_submit" value="Login" />
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <table>
         <thead>

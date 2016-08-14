@@ -1,4 +1,4 @@
-{% extends 'backend.html.twig' %}
+{% extends 'frontend.html.twig' %}
 
 {% block title %}GenTran Project List{% endblock %}
 
@@ -26,9 +26,11 @@
                         </ul>
                     </div>
 
-                    <h2 class="project-title"><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.projectName }}</a></h2>
-                    <p class="project-description">{{ project.description|length > 70 ? project.description[:70] ~ '...' : project.description }}</p>
-                    <p class="datetime">Created Date: {% if project.createdDate %}{{ project.createdDate|date('Y-m-d') }}{% endif %}</p>
+                    <a href="{{ path('project_show', { 'id': project.id }) }}" class="content-link">
+                        <h2 class="project-title">{{ project.projectName }}</h2>
+                        <p class="project-description">{{ project.description|length > 70 ? project.description[:70] ~ '...' : project.description }}</p>
+                        <p class="datetime">Created Date: {% if project.createdDate %}{{ project.createdDate|date('Y-m-d') }}{% endif %}</p>
+                    </a>
                 </div>
             </div>
             {% endfor %}

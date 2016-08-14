@@ -17,8 +17,13 @@ class StringKeyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('keyLabel', TextType::class)
-            ->add('os')
+            ->add('keyLabel')
+            ->add('os', 'entity', array(
+                'class'   => 'Frontend\OperatingSystemBundle\Entity\OperatingSystem',
+                'property'      => 'osName',
+                'multiple'      => true,
+                'expanded'      => false
+            ));
         ;
     }
     
