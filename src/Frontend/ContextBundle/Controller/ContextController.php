@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Frontend\ContextBundle\Entity\Context;
 use Frontend\ContextBundle\Form\ContextType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Context controller.
@@ -21,16 +22,31 @@ class ContextController extends Controller
      * Lists all Context entities.
      *
      * @Route("/", name="context_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $context = new Context();
+        $form = $this->createForm('Frontend\ContextBundle\Form\ContextType', $context);
+        $form->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $context->getImagePath();
+            $fileName = $this->get('cores.image_uploader')->upload($file);
+
+            $context->setImagePath($fileName);
+            $em->persist($context);
+            $em->flush();
+            return $this->redirectToRoute('context_index');
+        }
 
         $contexts = $em->getRepository('ContextBundle:Context')->findAll();
 
         return $this->render('context/index.html.twig', array(
             'contexts' => $contexts,
+            'form' => $form->createView()
         ));
     }
 

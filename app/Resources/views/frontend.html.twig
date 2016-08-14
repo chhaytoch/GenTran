@@ -25,13 +25,13 @@
             </li>
             {% if app.request.attributes.get('_route') != 'project_index' %}
                 <li>
-                    <a href="#">
+                    <a href="{{ path('context_index') }}">
                         <span class="glyphicon glyphicon-picture"></span>
                         Project Context
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ path('stringkey_index') }}">
                         <span class="glyphicon glyphicon-list-alt"></span>
                         Key String
                     </a>

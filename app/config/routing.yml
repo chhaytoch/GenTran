@@ -1,8 +1,3 @@
-home_page:
-    resource: "@HomePageBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 context:
     resource: "@ContextBundle/Controller/"
     type:     annotation
@@ -37,6 +32,13 @@ project:
     resource: "@ProjectBundle/Controller/"
     type:     annotation
     prefix:   /
+
+home_page:
+    resource: "@HomePageBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    defaults:
+        _controller: HomePageBundle:Default:index
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
