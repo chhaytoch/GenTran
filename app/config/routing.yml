@@ -3,6 +3,11 @@ home_page:
     type:     annotation
     prefix:   /
 
+context:
+    resource: "@ContextBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 string_value:
     resource: "@StringValueBundle/Controller/"
     type:     annotation

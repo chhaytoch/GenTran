@@ -11,22 +11,35 @@
     text-transform: uppercase;
   }
 
-  input.btn-login{
-    width: 100%;
-    display: block;
-    background-color: transparent;
-    border-radius: 0;
-    color: #fff;
-    text-transform: uppercase;
-    margin-top: 20px;
-    outline: none;
-    border: 1px solid #fff;
-    @include prefix(box-shadow, 0 0 10px rgba(0,0,0,0.2), webkit moz ms);
-
-    &:active{
+  input{
+    &.form-control{
+      outline: none;
+      border-radius: 0;
       border: none;
+    }
+
+    &.btn-login{
+      width: 100%;
+      display: block;
       background-color: transparent;
+      border-radius: 0;
       color: #fff;
+      text-transform: uppercase;
+      margin-top: 20px;
+      outline: none;
+      border: 1px solid #fff;
+      @include prefix(transition, all 0.3s, webkit moz ms);
+      @include prefix(box-shadow, 0 0 10px rgba(0,0,0,0.2), webkit moz ms);
+
+      &:hover{
+        background-color: rgba(255,255,255,0.1);
+        @include prefix(transform, scale(1.1), webkit moz ms);
+      }
+
+      &:active{
+        background-color: transparent;
+        color: #fff;
+      }
     }
   }
 }

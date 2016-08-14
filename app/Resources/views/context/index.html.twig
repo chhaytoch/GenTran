@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Context list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Imagepath</th>
+                <th>Createduser</th>
+                <th>Modifieduser</th>
+                <th>Createddate</th>
+                <th>Modifieddate</th>
+                <th>Id</th>
+                <th>Active</th>
+                <th>Deleted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for context in contexts %}
+            <tr>
+                <td><a href="{{ path('context_show', { 'id': context.id }) }}">{{ context.name }}</a></td>
+                <td>{{ context.description }}</td>
+                <td><img src="{{ asset('uploads/context/' ~ context.imagePath) }}" width="100" alt=""></td>
+                <td>{{ context.createdUser }}</td>
+                <td>{{ context.modifiedUser }}</td>
+                <td>{% if context.createdDate %}{{ context.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if context.modifiedDate %}{{ context.modifiedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ context.id }}</td>
+                <td>{% if context.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if context.deleted %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('context_show', { 'id': context.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('context_edit', { 'id': context.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('context_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
