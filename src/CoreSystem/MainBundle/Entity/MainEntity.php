@@ -5,7 +5,7 @@ namespace CoreSystem\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MainEntity
+ * @ORM\MappedSuperclass
  */
 class MainEntity
 {
@@ -21,14 +21,14 @@ class MainEntity
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    protected $active = 1;
+    protected $active = true;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
-    protected $deleted = 0;
+    protected $deleted = false;
 
     /**
      * Get id

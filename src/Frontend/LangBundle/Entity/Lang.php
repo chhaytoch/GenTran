@@ -38,13 +38,5 @@ class Lang extends UserLogEntity
     {
         $this->langName = $langName;
     }
-
-    /**
-     *
-     */
-    public function prePersistData()
-    {
-
-    }
 }
 

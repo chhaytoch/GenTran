@@ -34,6 +34,28 @@ class StringKey extends UserLogEntity
     private $os;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Frontend\ContextBundle\Entity\Context")
+     * @ORM\JoinColumn(name="context_id", referencedColumnName="id")
+     */
+    private $context;
+
+    /**
+     * @return mixed
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * @param mixed $context
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+    }
+    
+    /**
      * @return mixed
      */
     public function getOs()

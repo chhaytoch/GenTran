@@ -22,16 +22,29 @@ class StringKeyController extends Controller
      * Lists all StringKey entities.
      *
      * @Route("/", name="stringkey_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $stringKey = new StringKey();
+        $form = $this->createForm('Frontend\StringKeyBundle\Form\StringKeyType', $stringKey);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($stringKey);
+            $em->flush();
+
+            return $this->redirectToRoute('stringkey_index');
+        }
 
         $stringKeys = $em->getRepository('StringKeyBundle:StringKey')->findAll();
 
         return $this->render('stringkey/index.html.twig', array(
-            'stringKeys' => $stringKeys,
+            'stringKeys'    => $stringKeys,
+            'form'          => $form->createView(),
+            'lang'          => ''
         ));
     }
 
@@ -75,6 +88,19 @@ class StringKeyController extends Controller
             'stringKey' => $stringKey,
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    private function getProjectLang($projectId){
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb ->select('l.langName')
+            ->from('ProjectBundle:Project', 'p')
+            ->join('p.lang', 'l')
+            ->where('p.id = :projectId')
+            ->setParameter('projectId', $projectId);
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+        return $result;
     }
 
     /**

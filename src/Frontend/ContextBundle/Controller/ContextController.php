@@ -2,6 +2,7 @@
 
 namespace Frontend\ContextBundle\Controller;
 
+use Frontend\ProjectBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,7 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Frontend\ContextBundle\Entity\Context;
 use Frontend\ContextBundle\Form\ContextType;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Context controller.
@@ -26,6 +26,7 @@ class ContextController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $session  = $this->get("session");
         $context = new Context();
         $form = $this->createForm('Frontend\ContextBundle\Form\ContextType', $context);
         $form->handleRequest($request);
@@ -35,8 +36,10 @@ class ContextController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $context->getImagePath();
             $fileName = $this->get('cores.image_uploader')->upload($file);
-
             $context->setImagePath($fileName);
+            
+            $context->setProject($session->get('project'));
+
             $em->persist($context);
             $em->flush();
             return $this->redirectToRoute('context_index');

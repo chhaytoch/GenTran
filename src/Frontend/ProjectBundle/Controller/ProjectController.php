@@ -31,12 +31,11 @@ class ProjectController extends Controller
         $project = new Project();
         $form = $this->createForm('Frontend\ProjectBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
-        $user = $this->get('security.context')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
             $project->setUser($user);
             $em = $this->getDoctrine()->getManager();
-            $project->setCreatedDate(new \DateTime());
             $em->persist($project);
             $em->flush();
 
@@ -90,7 +89,8 @@ class ProjectController extends Controller
     public function showAction(Project $project)
     {
         $deleteForm = $this->createDeleteForm($project);
-
+        $session  = $this->get("session");
+        $session->set('project', $project->getId());
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'delete_form' => $deleteForm->createView(),

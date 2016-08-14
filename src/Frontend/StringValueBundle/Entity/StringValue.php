@@ -15,7 +15,8 @@ class StringValue extends UserLogEntity
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="Frontend\StringKeyBundle\Entity\StringKey", inversedBy="StringValue")
+     * @ORM\ManyToOne(targetEntity="Frontend\StringKeyBundle\Entity\StringKey")
+     * @ORM\JoinColumn(name="string_key", referencedColumnName="id")
      */
     private $stringKey;
 
@@ -26,17 +27,17 @@ class StringValue extends UserLogEntity
     private $lang;
 
     /**
-     * @ORM\Column(name="label_value", type="smallint")
+     * @ORM\Column(name="translate_value", type="string")
      */
-    private $labelValue;
+    private $translateValue;
 
     /**
-     * @ORM\Column(name="type", type="string")
+     * @ORM\Column(name="type", type="string", nullable=true)
      */
     private $type;
 
     /**
-     * @ORM\Column(name="quantity", type="string")
+     * @ORM\Column(name="quantity", type="string", nullable=true)
      */
     private $quantity;
 
@@ -75,17 +76,17 @@ class StringValue extends UserLogEntity
     /**
      * @return mixed
      */
-    public function getLabelValue()
+    public function getTranslateValue()
     {
-        return $this->labelValue;
+        return $this->translateValue;
     }
 
     /**
-     * @param mixed $labelValue
+     * @param mixed $translateValue
      */
-    public function setLabelValue($labelValue)
+    public function setTranslateValue($translateValue)
     {
-        $this->labelValue = $labelValue;
+        $this->translateValue = $translateValue;
     }
 
     /**

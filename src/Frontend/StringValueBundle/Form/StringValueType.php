@@ -15,17 +15,11 @@ class StringValueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('labelValue')
-            ->add('type')
-            ->add('quantity')
-            ->add('createdUser')
-            ->add('modifiedUser')
-            ->add('createdDate', 'datetime')
-            ->add('modifiedDate', 'datetime')
-            ->add('active')
-            ->add('deleted')
-            ->add('stringKey')
-            ->add('lang')
+            ->add('translateValue')
+//            ->add('type')
+//            ->add('quantity')
+//            ->add('stringKey')
+//            ->add('lang')
         ;
     }
     

@@ -5,7 +5,7 @@ namespace CoreSystem\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MainEntity
+ * @ORM\MappedSuperclass
  */
 class UserLogEntity extends TimestampEntity
 {

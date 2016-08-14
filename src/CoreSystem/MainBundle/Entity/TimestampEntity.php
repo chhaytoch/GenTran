@@ -5,13 +5,13 @@ namespace CoreSystem\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MainEntity
+ * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks()
  */
 class TimestampEntity extends MainEntity
 {
     /**
-     * @ORM\Column(name="created_date", type="datetime", nullable=true)
+     * @ORM\Column(name="created_date", type="datetime")
      */
     protected $createdDate;
 

@@ -1,18 +1,20 @@
 {% extends 'frontend.html.twig' %}
-
+{% block title %}Context Management{% endblock %}
 {% block body %}
-
+<div class="context-layout">
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
-                <input type="submit" value="Create" />
+                <div class="m-t-20">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
                 {{ form_end(form) }}
             </div>
 
-            <div class="col-md-7">
-                <table>
+            <div class="col-md-8">
+                <table class="table table-striped context-table">
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -35,12 +37,12 @@
                             {#<td>{% if context.active %}Yes{% else %}No{% endif %}</td>#}
                             {#<td>{% if context.deleted %}Yes{% else %}No{% endif %}</td>#}
                             <td>
-                                <ul>
+                                <ul class="list-inline">
                                     <li>
-                                        <a href="{{ path('context_show', { 'id': context.id }) }}">show</a>
+                                        <a href="{{ path('context_show', { 'id': context.id }) }}" class="btn btn-warning">show</a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('context_edit', { 'id': context.id }) }}">edit</a>
+                                        <a href="{{ path('context_edit', { 'id': context.id }) }}" class="btn btn-primary">edit</a>
                                     </li>
                                 </ul>
                             </td>
@@ -51,5 +53,5 @@
             </div>
         </div>
     </div>
-
+</div>
 {% endblock %}

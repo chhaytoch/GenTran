@@ -87,7 +87,7 @@ class Context extends UserLogEntity
     }
 
     /**
-     * @return mixed
+     * @return Project
      */
     public function getProject()
     {
@@ -95,7 +95,7 @@ class Context extends UserLogEntity
     }
 
     /**
-     * @param mixed $project
+     * @param Project $project
      */
     public function setProject($project)
     {
