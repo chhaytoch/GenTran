@@ -5,6 +5,7 @@ namespace Frontend\ContextBundle\Entity;
 use CoreSystem\MainBundle\Entity\UserLogEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Frontend\ProjectBundle\Entity\Project;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="context")
  * @ORM\Entity(repositoryClass="Frontend\ContextBundle\Repository\ContextRepository")
+ * @UniqueEntity(fields={"name"}, message="Duplicate Name")
  */
 class Context extends UserLogEntity
 {

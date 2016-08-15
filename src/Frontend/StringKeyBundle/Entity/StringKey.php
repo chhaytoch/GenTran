@@ -5,12 +5,14 @@ namespace Frontend\StringKeyBundle\Entity;
 use CoreSystem\MainBundle\Entity\UserLogEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * StringKey
  *
  * @ORM\Table(name="string_key")
  * @ORM\Entity(repositoryClass="Frontend\StringKeyBundle\Repository\StringKeyRepository")
+ * @UniqueEntity(fields={"keyLabel"}, message="Key String is unique, can't be duplicate!")
  */
 class StringKey extends UserLogEntity
 {

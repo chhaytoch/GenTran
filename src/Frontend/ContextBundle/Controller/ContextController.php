@@ -27,6 +27,8 @@ class ContextController extends Controller
     public function indexAction(Request $request)
     {
         $session  = $this->get("session");
+        $projectId = $session->get('project');
+
         $context = new Context();
         $form = $this->createForm('Frontend\ContextBundle\Form\ContextType', $context);
         $form->handleRequest($request);
@@ -37,8 +39,9 @@ class ContextController extends Controller
             $file = $context->getImagePath();
             $fileName = $this->get('cores.image_uploader')->upload($file);
             $context->setImagePath($fileName);
-            
-            $context->setProject($session->get('project'));
+
+            $project = $em->getRepository('ProjectBundle:Project')->find($projectId);
+            $context->setProject($project);
 
             $em->persist($context);
             $em->flush();

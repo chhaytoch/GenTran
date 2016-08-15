@@ -2,6 +2,7 @@
 
 namespace Frontend\StringKeyBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -41,11 +42,47 @@ class StringKeyController extends Controller
 
         $stringKeys = $em->getRepository('StringKeyBundle:StringKey')->findAll();
 
+        $session = $this->get('session');
+        $projectId = $session->get('project');
+        $lang = $this->findProjectLang($projectId);
         return $this->render('stringkey/index.html.twig', array(
             'stringKeys'    => $stringKeys,
             'form'          => $form->createView(),
-            'lang'          => ''
+            'languages'          => $lang
         ));
+    }
+
+    private function findProjectLang($projectId)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('l.id', 'l.langName')
+            ->from('ProjectBundle:Project', 'p')
+            ->join('p.lang', 'l')
+            ->where('p.id = :projectId')
+            ->setParameter('projectId', $projectId);
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @Route("/{stringKey}/context", name="stringkey_context")
+     * @Method("GET")
+     */
+    public function getContextAction($stringKey)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('c.id', 'c.imagePath')
+            ->from('StringKeyBundle:StringKey', 'sk')
+            ->join('sk.context', 'c')
+            ->where('sk.id = :stringKey')
+            ->setParameter('stringKey', $stringKey);
+        $result = $qb->getQuery()->getSingleResult();
+        $imagePath = $this->container
+            ->get('templating.helper.assets')
+            ->getUrl('uploads/context/');
+        $result['imagePath'] = $imagePath . $result['imagePath'];
+        return new JsonResponse($result);
     }
 
     /**
